@@ -90,7 +90,6 @@ text = "Quit"
 
 [node name="SteamLobbyContainer" type="MarginContainer" parent="Control/Center" unique_id=965437897]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -112,7 +111,7 @@ text = "正在创建大厅..."
 [node name="LobbyIdLabel" type="Label" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=1431752828]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 
 [node name="HSeparator" type="HSeparator" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=1811074040]
 layout_mode = 2

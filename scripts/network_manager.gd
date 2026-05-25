@@ -12,7 +12,7 @@ const WORLD = preload("uid://bvdtdbtjkjrio")
 const PLAYER = preload("uid://c8404uokh3vyu")
 
 ## 当前活跃的网络类型，UI 或配置可通过它切换 ENet/Steam
-var active_network_type: MULTIPLAYER_NETWORK_TYPE = MULTIPLAYER_NETWORK_TYPE.ENET
+var active_network_type: MULTIPLAYER_NETWORK_TYPE = MULTIPLAYER_NETWORK_TYPE.STEAM
 
 
 # ============================================

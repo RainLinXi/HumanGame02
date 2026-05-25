@@ -139,7 +139,7 @@ func start_server() -> void:
 	# 创建基于 Steam P2P 的多人对等体（不需要开放端口，Steam 内部处理 NAT）
 	var peer := SteamMultiplayerPeer.new()
 	# 0 = 虚拟通道号，区分同游戏内的多个连接
-	var result = peer.create_server(0)
+	var result = peer.create_host(0)
 	if result != OK:
 		connection_failed.emit("Steam 多人服务器创建失败")
 		return
@@ -155,7 +155,7 @@ func start_server() -> void:
 	Steam.setLobbyData(lobby_id, "host_steam_id", str(steam_id))
 
 	# 通知 NetworkManager 服务器就绪
-	server_started.emit(steam_id)
+	server_started.emit(multiplayer.get_unique_id())
 
 
 ## Client 端：创建 SteamMultiplayerPeer 客户端，连接到 host

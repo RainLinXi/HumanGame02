@@ -103,6 +103,7 @@ func _on_host_steam():
 	SteamNetwork.create_lobby()
 
 func _on_start_game_pressed() -> void:
+	hide()
 	# 加载世界 + 启动 Steam P2P 服务器
 	NetworkManager.host_game()
 
