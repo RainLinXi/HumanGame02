@@ -27,58 +27,121 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/Center" unique_id=1976133218]
+[node name="NetContainer" type="MarginContainer" parent="Control/Center" unique_id=1976133218]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Center/MarginContainer" unique_id=950416139]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Center/NetContainer" unique_id=950416139]
 layout_mode = 2
 
-[node name="EnetMenu" type="VBoxContainer" parent="Control/Center/MarginContainer/HBoxContainer" unique_id=473322910]
+[node name="EnetMenu" type="VBoxContainer" parent="Control/Center/NetContainer/HBoxContainer" unique_id=473322910]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/Center/MarginContainer/HBoxContainer/EnetMenu" unique_id=310566002]
+[node name="Label" type="Label" parent="Control/Center/NetContainer/HBoxContainer/EnetMenu" unique_id=310566002]
 layout_mode = 2
 text = "ENet_game"
 
-[node name="ButtonHost" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/EnetMenu" unique_id=488218042]
+[node name="ButtonHost" type="Button" parent="Control/Center/NetContainer/HBoxContainer/EnetMenu" unique_id=488218042]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Host"
 
-[node name="ButtonJoin" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/EnetMenu" unique_id=480456168]
+[node name="ButtonJoin" type="Button" parent="Control/Center/NetContainer/HBoxContainer/EnetMenu" unique_id=480456168]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Join"
 
-[node name="ButtonQuit" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/EnetMenu" unique_id=272542830]
+[node name="ButtonQuit" type="Button" parent="Control/Center/NetContainer/HBoxContainer/EnetMenu" unique_id=272542830]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 
-[node name="SteamMenu" type="VBoxContainer" parent="Control/Center/MarginContainer/HBoxContainer" unique_id=893725182]
+[node name="SteamMenu" type="VBoxContainer" parent="Control/Center/NetContainer/HBoxContainer" unique_id=893725182]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/Center/MarginContainer/HBoxContainer/SteamMenu" unique_id=1264452431]
+[node name="Label" type="Label" parent="Control/Center/NetContainer/HBoxContainer/SteamMenu" unique_id=1264452431]
 layout_mode = 2
-text = "ENet_game"
+text = "Steam_game"
 
-[node name="ButtonInitSteam" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/SteamMenu" unique_id=2035409682]
+[node name="ButtonHostSteam" type="Button" parent="Control/Center/NetContainer/HBoxContainer/SteamMenu" unique_id=2035409682]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Init Steam"
+text = "Host Steam"
 
-[node name="ButtonJoinSteam" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/SteamMenu" unique_id=182990782]
+[node name="LineEditSteam" type="LineEdit" parent="Control/Center/NetContainer/HBoxContainer/SteamMenu" unique_id=721213609]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ButtonJoinSteam" type="Button" parent="Control/Center/NetContainer/HBoxContainer/SteamMenu" unique_id=182990782]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Join"
 
-[node name="ButtonQuitSteam" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/SteamMenu" unique_id=1279196852]
+[node name="ButtonQuitSteam" type="Button" parent="Control/Center/NetContainer/HBoxContainer/SteamMenu" unique_id=1279196852]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
+
+[node name="SteamLobbyContainer" type="MarginContainer" parent="Control/Center" unique_id=965437897]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Center/SteamLobbyContainer" unique_id=406324445]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=2101361652]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "多人游戏大厅"
+
+[node name="StatusLabel" type="Label" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=1367227565]
+layout_mode = 2
+text = "正在创建大厅..."
+
+[node name="LobbyIdLabel" type="Label" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=1431752828]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+
+[node name="HSeparator" type="HSeparator" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=1811074040]
+layout_mode = 2
+
+[node name="MemberLabel" type="Label" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=528476978]
+layout_mode = 2
+text = "成员列表"
+
+[node name="MemberContainer" type="VBoxContainer" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=1763927450]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=1724642896]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Control/Center/SteamLobbyContainer/VBoxContainer" unique_id=1049052749]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Control/Center/SteamLobbyContainer/VBoxContainer/ButtonContainer" unique_id=1527947416]
+unique_name_in_owner = true
+layout_mode = 2
+text = "开始游戏"
+
+[node name="InviteButton" type="Button" parent="Control/Center/SteamLobbyContainer/VBoxContainer/ButtonContainer" unique_id=117109950]
+unique_name_in_owner = true
+layout_mode = 2
+text = "邀请好友"
+
+[node name="LeaveButton" type="Button" parent="Control/Center/SteamLobbyContainer/VBoxContainer/ButtonContainer" unique_id=1846357777]
+unique_name_in_owner = true
+layout_mode = 2
+text = "离开大厅"
