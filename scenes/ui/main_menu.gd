@@ -37,9 +37,10 @@ func _ready() -> void:
 	SteamNetwork.lobby_created.connect(_on_lobby_created)
 	SteamNetwork.lobby_joined.connect(_on_lobby_joined)
 	SteamNetwork.lobby_left.connect(_on_lobby_left)
-	SteamNetwork.lobby_member_joined.connect(_refresh_member_list)
-	SteamNetwork.lobby_member_left.connect(_refresh_member_list)
+	SteamNetwork.lobby_member_joined.connect(func(_id, _name): _refresh_member_list())
+	SteamNetwork.lobby_member_left.connect(func(_id): _refresh_member_list())
 	SteamNetwork.lobby_join_failed.connect(_on_lobby_join_failed)
+	SteamNetwork.server_stopped_ui_reset.connect(_on_server_stopped_ui_reset)
 	# Host 开始游戏 → 客户端自动进入游戏
 	SteamNetwork.game_start_announced.connect(_on_game_start_announced)
 
@@ -53,6 +54,10 @@ func _on_lobby_joined(p_lobby_id: int) -> void:
 	# 显示大厅 ID + 刷新成员列表
 	lobby_id_label.text = "Lobby ID: %d" % p_lobby_id
 	_refresh_member_list()
+	
+	net_container.hide()
+	steam_lobby_container.show()
+	
 
 func _on_lobby_join_failed(reason: String) -> void:
 	# 暂时打印失败原因，后续可改为弹窗
@@ -77,7 +82,7 @@ func _refresh_member_list() -> void:
 
 func _on_join_enet():
 	# 让 NetworkManager 加载世界并加入服务器
-	NetworkManager.join_game()
+	NetworkManager.join_game(1)
 	hide()
 
 
@@ -108,6 +113,8 @@ func _on_start_game_pressed() -> void:
 	NetworkManager.host_game()
 
 func _on_leave_lobby_pressed() -> void:
+	SteamNetwork.leave_lobby()
+	
 	steam_lobby_container.hide()
 	net_container.show()
 	pass
@@ -117,5 +124,9 @@ func _on_invite_pressed() -> void:
 	SteamNetwork.invite_friends()
 
 func _on_game_start_announced(p_host_steam_id: int) -> void:
+	hide()
 	# Host 开始游戏 → 客户端自动加入
-	NetworkManager.join_game()
+	NetworkManager.join_game(p_host_steam_id)
+	
+func _on_server_stopped_ui_reset():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -37,7 +37,7 @@ func host_game() -> void:
 
 
 ## Client 端入口：加载世界场景 → 加入服务器
-func join_game() -> void:
+func join_game(host_steam_id: int) -> void:
 	# 先将 World 场景挂到当前场景树上
 	_add_world()
 	match active_network_type:
@@ -47,7 +47,7 @@ func join_game() -> void:
 			EnetNetwork.join_server()
 		MULTIPLAYER_NETWORK_TYPE.STEAM:
 			_bind_steam_signals()
-			SteamNetwork.join_server()
+			SteamNetwork.join_server(host_steam_id)
 		_:
 			printerr("[NetworkManager] 未支持的网络类型: %s" % active_network_type)
 
