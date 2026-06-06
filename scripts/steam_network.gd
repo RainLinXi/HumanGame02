@@ -35,6 +35,9 @@ signal player_disconnected(peer_id: int)
 signal connection_failed(reason: String)
 ## 本机主动离开或服务器关闭时发出
 signal server_stopped
+## 本机主动离开或服务器关闭时发出，重置ui，显示鼠标
+signal server_stopped_ui_reset
+
 
 var is_owned: bool = false
 var steam_app_id: int = 480
@@ -219,7 +222,7 @@ func _on_steam_lobby_joined(p_lobby_id: int, _permissions: int, _locked: bool, r
 
 
 ## Steam 回调：Lobby 成员变化（有人加入或离开）
-func _on_steam_lobby_chat_update(p_lobby_id: int, changed_member: int, _making_change_member: int) -> void:
+func _on_steam_lobby_chat_update(p_lobby_id: int, changed_member: int, _making_change_member: int, _chat_state: int) -> void:
 	# 获取变动成员的昵称
 	var member_name: String = Steam.getFriendPersonaName(changed_member)
 	# Steam 不直接告诉是加入还是离开，需要遍历当前成员列表来判断
@@ -239,13 +242,14 @@ func _on_steam_lobby_chat_update(p_lobby_id: int, changed_member: int, _making_c
 
 
 ## Steam 回调：Lobby 数据变更（host 写了新键值对，会同步给所有成员）
-func _on_steam_lobby_data_update(p_lobby_id: int, success: int, _member_id: int) -> void:
+func _on_steam_lobby_data_update(success: int, p_lobby_id: int, _member_id: int) -> void:
 	# success 为 0 表示数据读取失败，直接跳过
 	if not success:
 		return
 
 	# 检查是否有"游戏开始"标记
 	var game_started: String = Steam.getLobbyData(p_lobby_id, "game_started")
+	print("lobby id: %s" %p_lobby_id)
 	if game_started == "true":
 		# 只有客户端才需要响应（host 自己不需要被自己的通知触发）
 		var owner_id: int = Steam.getLobbyOwner(p_lobby_id)
@@ -277,7 +281,7 @@ func leave_server() -> void:
 			Steam.setLobbyData(lobby_id, "game_started", "false")
 
 	server_stopped.emit()
-
+	server_stopped_ui_reset.emit()
 
 # ============================================
 # 私有方法 —— 多人对等体信号处理（与 EnetNetwork 相同逻辑）内部信号处理，只做转发
